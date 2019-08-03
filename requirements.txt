@@ -2,7 +2,12 @@ pandas>=0.22.0
 numpy>=1.14.2
 scipy==1.0.0
 xlrd
+xlsx-writer
 matplotlib==2.0.2
 seaborn==0.8.1
-bokeh==0.12.15
 jupyter==1.0.0
+scikit-learn
+pandas-profiling
+loguru
+
+-e git://github.com/dezeraecox/GEN_Utils#egg=GEN_Utils
