@@ -1,6 +1,10 @@
 //This macro batch processes all the files in a folder and any
-// subfolders in that folder. For only red or green images, comment
-//out the appropriate sections in the last function
+// subfolders in that folder. Create a folder "Results" within
+// the directory to be processed. Files should be labelled 
+// systematically to enable downstream processing i.e.
+// 1_A_1 refers to plate 1, row A, column 1
+
+
 
 // initialises all functions (count files, process files)
 dir = getDirectory("Choose a Directory ");
