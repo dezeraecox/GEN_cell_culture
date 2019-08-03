@@ -105,5 +105,5 @@ venv.bak/
 
 
 # Results files
-*Results.*
-*Figures.pdf
+*test_data*
+examples/fiji*
