@@ -1,18 +1,20 @@
-
-from loguru import logger
-from sklearn.mixture import GaussianMixture
-from GEN_Utils import FileHandling
-import seaborn as sns
-import scipy.stats as stats
-import matplotlib.ticker as tkr
-import matplotlib
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import mixture
-from matplotlib import rc
 import os
 import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.ticker as tkr
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
+import seaborn as sns
+
+from matplotlib import rc
+from sklearn import mixture
+from sklearn.mixture import GaussianMixture
+from pandas_profiling import ProfileReport
+
+from loguru import logger
+from GEN_Utils import FileHandling
+
 matplotlib.rcParams.update(_VSCode_defaultMatplotlib_Params)
 matplotlib.rcParams.update({'figure.facecolor': (1, 1, 1, 1)})
 
@@ -36,7 +38,7 @@ def preprocess(df, cell_col, upper_thresh=15000, lower_thresh=2500):
     return df
 
 
-def file_processor(input_path, cell_col):
+def file_processor(input_path, cell_col, upper_thresh=2600, lower_thresh=500):
     sample_dict = {}
     raw_data = pd.read_csv(input_path)
     # sns.distplot(raw_data, bins=1000, hist=True, kde=True, rug=False, fit=None, hist_kws=None, kde_kws=None, rug_kws=None, fit_kws=None, color=None, vertical=False, norm_hist=False, axlabel=None, label=None, ax=None)
@@ -45,7 +47,7 @@ def file_processor(input_path, cell_col):
 
     sample_dict['raw_data'] = raw_data.copy()
     sample_dict['normalised'] = preprocess(
-        raw_data, upper_thresh=2600, lower_thresh=500, cell_col=cell_col)
+        raw_data, upper_thresh=upper_thresh, lower_thresh=lower_thresh, cell_col=cell_col)
     logger.debug(f'{sample_name} normalised.')
 
     return sample_dict
@@ -89,24 +91,20 @@ def model_plotter(model, x_vals, sample_name=None):
     return fig
 
 
-input_folder = 'Raw_data/190124-TPE + PI/190124-Exported/'
-output_folder = 'Python_results/gauss_models/'
+input_folder = 'test_data/flow_cytometry/'
+output_folder = 'examples/python/gauss_models/'
+# Column name containing PI fluorescence information
+cell_col = 'PI'
 
-if not os.path.exists(output_folder):
-    os.mkdir(output_folder)
-
-
-# # Have a quick look at a few samples
-# input_path = input_folder + os.listdir(input_folder)[1]
-# raw_test = pd.read_csv(input_path)
-# raw_test
-# sns.distplot(raw_test[cell_col])
+output_folder_list = [output_folder] + [f'{output_folder}plots/', f'{output_folder}normalised/']
+for folder in output_folder_list:
+    if not os.path.exists(folder):
+        os.mkdir(folder)
 
 
 # Generate models for individual files
 data_dict = {}
-filelist = [filename for filename in os.listdir(input_folder) if '1.csv' not in filename]
-filelist = [filename for filename in filelist if '_2' not in filename]
+filelist = [filename for filename in os.listdir(input_folder)]
 
 for filename in filelist:
     input_path = input_folder + filename
@@ -115,6 +113,7 @@ for filename in filelist:
 
     # # Check raw data
     # raw_data = pd.read_csv(input_path)
+    # ProfileReport(raw_data)
     # fig, axes = plt.subplots(1, len(raw_data.columns.tolist()))
     # for x, col in enumerate(raw_data.columns.tolist()):
     #     sns.distplot(raw_data[col], ax=axes[x])
@@ -122,12 +121,14 @@ for filename in filelist:
     # plt.autoscale()
     # plt.title(sample_name)
     
-    cell_col = 'PI'
-
-    sample_dict = file_processor(input_path, cell_col)
+    sample_dict = file_processor(input_path, cell_col, upper_thresh=2600, lower_thresh=500)
 
     # Generate array of PI normalised values, fit to GMM and plot
     x_array = np.array(sample_dict['normalised'][cell_col])
+
+    if x_array.shape[0] < 2:
+        logger.info(f'{sample_name} was not processed.')
+        continue
     gauss_model = model_fitter(x_array)
     fig = model_plotter(gauss_model, x_array.ravel(), sample_name=sample_name)
     plt.savefig(f"{output_folder}plots/{sample_name}_model.png")
@@ -190,4 +191,3 @@ summary.reset_index(inplace=True)
 
 FileHandling.df_to_excel(data_frames=[summary], sheetnames=[
                          'phase_proportion'], output_path=f'{output_folder}summary.xlsx')
-
