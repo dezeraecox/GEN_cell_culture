@@ -31,13 +31,13 @@ You can install the python scripts included in this repo using pip:
   - The proportion of pixels occupied by cell structure is determined as an estimate of confluency
   - data is outputted to .csv for processing in python
 
-[!Example image](examples\fiji\image_density.png)
+![Example_confluency_counter](examples\fiji\image_density.png)
 
 - Python functionality
   - Takes import of measurements from FiJi and groups replicates according to provided sample identifiers
   - Produces scattbar plot grouped according to sample identifiers
 
-[!Example image](examples/)
+![Example_confluency](examples/python/confluency/confluency.png)
 
 2. Proportion of cells in each phase of cell cycle
 
@@ -46,7 +46,12 @@ You can install the python scripts included in this repo using pip:
 - PI fluorescence is then exported for individual cells to ```.csv```
 - This module then plots PI histogram, fits distribution with 3-phase gaussian fits to assign cell cycle stage (G0/1, S, G2/M)
 
-[!Example image](examples/)
+Model            |  Prediction
+:-------------------------:|:-------------------------:
+![Example_model](examples/python/gauss_models/plots/1A2_model.png)  |  ![Example_predict](examples/python/gauss_models/plots/1A2_predict.png)
+
+
+
 
 - Using fits, cells are then binned into each phase to allow other parameters to be calculated (e.g. median of other fluorescent channels) for each phase
 
