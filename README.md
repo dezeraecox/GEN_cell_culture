@@ -31,13 +31,13 @@ You can install the python scripts included in this repo using pip:
   - The proportion of pixels occupied by cell structure is determined as an estimate of confluency
   - data is outputted to .csv for processing in python
 
-![Example_confluency_counter](examples/fiji/image_density.png)
+![Example_confluency_counter](examples/images/image_density.png)
 
 - Python functionality
   - Takes import of measurements from FiJi and groups replicates according to provided sample identifiers
   - Produces scattbar plot grouped according to sample identifiers
 
-![Example_confluency](examples/python/confluency/confluency.png)
+![Example_confluency](examples/images/confluency.png)
 
 2. Proportion of cells in each phase of cell cycle
 
@@ -48,7 +48,7 @@ You can install the python scripts included in this repo using pip:
 
 Model            |  Prediction
 :-------------------------:|:-------------------------:
-![Example_model](examples/python/gauss_models/plots/1A2_model.png)  |  ![Example_predict](examples/python/gauss_models/plots/1A2_predict.png)
+![Example_model](examples/images/example_model.png)  |  ![Example_predict](examples/images/example_predict.png)
 
 
 
