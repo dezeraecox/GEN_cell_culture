@@ -115,14 +115,14 @@ for x, plate in enumerate(plotting_plates):
 
 plt.ylabel("Confluency (%)")
 
-for ax in axes:
+for x, ax in enumerate(axes):
     ax.set_xlabel(x_label)
     ax.set_title(plate_names[x])
 
 plt.tight_layout()
 plt.autoscale()
     #plt.show()
-
+plt.savefig(output_path+f'confluency.png')
 FileHandling.fig_to_pdf([fig], output_path+f'Confluency_')
 FileHandling.fig_to_svg([f'Confluency_'], [fig], output_path)
 
