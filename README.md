@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dezeraecox/GEN_cell_culture/master)
+
 # GEN_Cell culture
 
 This package contains a collection of simple javascript, jython and python scripts for processing image and flow-cytometry data. These modules were designed to collect parameters about cells in culture, such as confluency via brightfield images, or proportion of cells in each phase of the cell cycle.
