@@ -32,7 +32,7 @@ You can install the python scripts included in this repo using pip:
   - data is outputted to .csv for processing in python
 
 <p align="center">
-  <img height='200' width='' src="examples/images/image_density.png">
+  <img height='100' width='' src="examples/images/image_density.png">
 </p>
 
 - Python functionality
