@@ -105,7 +105,11 @@ venv.bak/
 
 
 # Results files
-examples/fiji*
+examples/fiji/*/*/*.tif
+examples/fiji/*/*.tif
+
+examples/fiji/*/*.png
+
 examples/python*
 
 # VSCode files
