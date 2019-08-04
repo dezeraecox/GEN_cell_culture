@@ -103,7 +103,7 @@ filelist = [filename for filename in os.listdir(input_folder)]
 for filename in filelist[:3]:
     input_path = input_folder + filename
     filename, file_extension = os.path.splitext(filename)
-    sample_name = filename.split('_')[1]
+    sample_name = filename
 
     # # Check raw data
     # raw_data = pd.read_csv(input_path)
