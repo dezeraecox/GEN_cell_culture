@@ -19,7 +19,7 @@ In addition, jython scripts and ImageJ macros require installation of an ImageJ 
 
 You can install the python scripts included in this repo using pip:
 
-```python -m pip install git+https://github.com/tangentlabs/django-oscar-paypal.git@issue/34/oscar-0.6```
+```python -m pip install git+https://github.com/dezeraecox/GEN_cell_culture```
 
 ### Example applications
 
@@ -31,7 +31,7 @@ You can install the python scripts included in this repo using pip:
   - The proportion of pixels occupied by cell structure is determined as an estimate of confluency
   - data is outputted to .csv for processing in python
 
-![Example_confluency_counter](examples\fiji\image_density.png)
+![Example_confluency_counter](examples/fiji/image_density.png)
 
 - Python functionality
   - Takes import of measurements from FiJi and groups replicates according to provided sample identifiers
