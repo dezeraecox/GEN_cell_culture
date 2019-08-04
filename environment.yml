@@ -31,4 +31,4 @@ dependencies:
     - virtualenvwrapper==4.8.2
     - xlsxwriter==1.1.8
     - xlrd==1.2.0
-    - "--editable=git+https://github.com/dezeraecox/GEN_Utils/tree/master"
+    - git+https://github.com/dezeraecox/GEN_Utils
