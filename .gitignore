@@ -110,7 +110,8 @@ examples/fiji/*/*.tif
 
 examples/fiji/*/*.png
 
-examples/python*
+examples/python/gauss_models/normalised/*
+examples/python/gauss_models/plots/*
 
 # VSCode files
 *.vscode*
