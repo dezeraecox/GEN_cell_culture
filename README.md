@@ -43,7 +43,7 @@ You can install the python scripts included in this repo using pip:
   <img src="examples/images/confluency.png">
 </p>
 
-1. Proportion of cells in each phase of cell cycle
+2. Proportion of cells in each phase of cell cycle
 
 - Cells stained with propidium iodide (PI; see example protocols [here]()) are analysed via flow cytometry
 - Flow cytometry files can then pre-processed using a suitable analysis program (e.g. [FlowJo](https://www.flowjo.com/), [FlowCytometryTools](https://pypi.org/project/FlowCytometryTools/))
