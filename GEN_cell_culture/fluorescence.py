@@ -11,6 +11,7 @@ from GEN_Utils import FileHandling
 
 logger.info('Import OK')
 
+# Set some sample-specific parameters
 input_folder = 'examples/python/gauss_models/normalised/'
 output_folder = 'examples/python/phase_fluorescence/'
 
@@ -26,8 +27,8 @@ if not os.path.exists(output_folder):
 # Generate filelist
 file_list = [filename for filename in os.listdir(input_folder)]
 
-# Collect important info into summary df, grouped according to phase
 
+# Collect important info into summary df, grouped according to phase
 sample_data = []
 for filename in file_list:
     sample_name = os.path.splitext(filename)[0]
@@ -75,3 +76,5 @@ summary_df.sort_values(['plate', 'sample'], inplace=True)
 
 FileHandling.df_to_excel(data_frames=[summary_df], sheetnames=[
                          'median_TPE'], output_path=f'{output_folder}median_TPE.xlsx')
+
+# TODO 2019 August 04: Refactor this to a single function that has toggle option for +/- phase
