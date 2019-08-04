@@ -31,15 +31,19 @@ You can install the python scripts included in this repo using pip:
   - The proportion of pixels occupied by cell structure is determined as an estimate of confluency
   - data is outputted to .csv for processing in python
 
-![Example_confluency_counter](examples/images/image_density.png)
+<p align="center">
+  <img src="examples/images/image_density.png">
+</p>
 
 - Python functionality
   - Takes import of measurements from FiJi and groups replicates according to provided sample identifiers
   - Produces scattbar plot grouped according to sample identifiers
 
-![Example_confluency](examples/images/confluency.png)
+<p align="center">
+  <img src="examples/images/confluency.png">
+</p>
 
-2. Proportion of cells in each phase of cell cycle
+1. Proportion of cells in each phase of cell cycle
 
 - Cells stained with propidium iodide (PI; see example protocols [here]()) are analysed via flow cytometry
 - Flow cytometry files can then pre-processed using a suitable analysis program (e.g. [FlowJo](https://www.flowjo.com/), [FlowCytometryTools](https://pypi.org/project/FlowCytometryTools/))
