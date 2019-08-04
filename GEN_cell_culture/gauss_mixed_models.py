@@ -1,4 +1,5 @@
 import os
+
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tkr
@@ -7,20 +8,15 @@ import pandas as pd
 import scipy.stats as stats
 import seaborn as sns
 
+from loguru import logger
 from matplotlib import rc
+from pandas_profiling import ProfileReport
 from sklearn import mixture
 from sklearn.mixture import GaussianMixture
-from pandas_profiling import ProfileReport
 
-from loguru import logger
 from GEN_Utils import FileHandling
 
-matplotlib.rcParams.update(_VSCode_defaultMatplotlib_Params)
-matplotlib.rcParams.update({'figure.facecolor': (1, 1, 1, 1)})
-
-
 logger.info('Import OK')
-
 
 def preprocess(df, cell_col, upper_thresh=15000, lower_thresh=2500):
     # Upper and lower thresholds remove apoptotic and multiploidal cells
@@ -56,9 +52,7 @@ def file_processor(input_path, cell_col, upper_thresh=2600, lower_thresh=500):
 def model_fitter(x_array, num_components=3):
     # Fit initial data, including preprocessing to generate array
     ravelled = np.ravel(x_array).astype(np.float)
-    logger.debug(len(ravelled))
     shaped = ravelled.reshape(-1, 1)
-    logger.debug(len(shaped))
     # establish model
     gauss_model = mixture.GaussianMixture(
         n_components=num_components, covariance_type='full')
@@ -106,7 +100,7 @@ for folder in output_folder_list:
 data_dict = {}
 filelist = [filename for filename in os.listdir(input_folder)]
 
-for filename in filelist:
+for filename in filelist[:3]:
     input_path = input_folder + filename
     filename, file_extension = os.path.splitext(filename)
     sample_name = filename.split('_')[1]
@@ -126,7 +120,8 @@ for filename in filelist:
     # Generate array of PI normalised values, fit to GMM and plot
     x_array = np.array(sample_dict['normalised'][cell_col])
 
-    if x_array.shape[0] < 2:
+    # As a general rule, no point fitting datasets of > 1000 cells (either controls or real)
+    if x_array.shape[0] < 1000:
         logger.info(f'{sample_name} was not processed.')
         continue
     gauss_model = model_fitter(x_array)
