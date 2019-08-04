@@ -19,7 +19,7 @@ In addition, jython scripts and ImageJ macros require installation of an ImageJ 
 
 You can install the python scripts included in this repo using pip:
 
-```python -m pip install git+https://github.com/dezeraecox/GEN_cell_culture```
+```python -m pip install git+https://github.com/dezeraecox/GEN_cell_culture#egg=GEN_cell_culture```
 
 ### Example applications
 
